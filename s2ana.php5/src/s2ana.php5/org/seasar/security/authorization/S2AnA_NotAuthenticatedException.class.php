@@ -10,7 +10,7 @@ class S2AnA_NotAuthenticatedException extends S2Container_S2RuntimeException
 
     public function __construct($targetComponent, $authContext)
     {
-        parent::__construct('EANA0003', array($targetComponent));
+        parent::__construct('EANA0003', array(get_class($targetComponent)));
         $this->targetComponent = $targetComponent;
         $this->authContext = $authContext;
     }

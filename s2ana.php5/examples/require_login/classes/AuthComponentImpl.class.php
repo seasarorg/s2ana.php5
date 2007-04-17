@@ -1,6 +1,6 @@
 <?php
 
-class AdminRoleAccessOnlyClass implements CallableClass
+class AuthComponentImpl implements AuthComponent
 {
     public function call()
     {

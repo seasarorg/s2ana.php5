@@ -1,6 +1,6 @@
 <?php
 
-class AuthAccessOnlyClass
+class AuthAccessOnlyClass implements CallableClass
 {
     public function call()
     {

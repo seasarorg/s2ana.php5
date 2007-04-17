@@ -1,6 +1,6 @@
 <?php
 
-class UserRoleAccessDenyClass
+class UserRoleAccessDenyClass implements CallableClass
 {
     public function call()
     {

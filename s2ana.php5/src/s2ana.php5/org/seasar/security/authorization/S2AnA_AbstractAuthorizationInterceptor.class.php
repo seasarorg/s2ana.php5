@@ -26,10 +26,10 @@ abstract class S2AnA_AbstractAuthorizationInterceptor extends S2Container_Abstra
         for ( $i = 0; $i < $roleNamesCount; $i++ ) {
             $roleName = $this->roleNames[$i];
             if ($authenticationContext->isUserInRole($roleName)) {
-                return ifInRole($invocation, $authenticationContext, $roleName);
+                return $this->ifInRole($invocation, $authenticationContext, $roleName);
             }
         }
-        return ifNotInRole($invocation, $authenticationContext);
+        return $this->ifNotInRole($invocation, $authenticationContext);
     }
 
     public function addRoleName($roleName)

@@ -11,7 +11,7 @@ class S2AnA_AccessDeniedException extends S2Container_S2RuntimeException
     
     public function __construct($targetComponent, $authContext, $roleName = NULL)
     {
-        parent::__construct('EANA0001', array($targetComponent));
+        parent::__construct('EANA0001', array(get_class($targetComponent)));
         $this->targetComponent = $targetComponent;
         $this->authContext = $authContext;
         $this->roleName = $roleName;
