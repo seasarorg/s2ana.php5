@@ -9,7 +9,13 @@
 <title>The Seasar Project - S2AnA.PHP5</title>
 
 <link rel="stylesheet" type="text/css" href="stylesheets/main.css" media="screen,projection">
-<link rel="stylesheet" type="text/css" href="stylesheets/main.css" media="print"></head><body>
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+<script src="prettify/prettify.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="prettify/prettify.css" media="screen,projection">
+
+</head>
+<body onLoad="prettyPrint()">
 <div id="wrapper">
 
 <div id="header">
@@ -19,7 +25,7 @@
 <div id="logo">
     <h1 id="h01" class="hide">The Seasar Project</h1>
     <a href="http://www.seasar.org/">
-        <img src="images/seasar_logo_blue.gif" alt="The Seasar Project" width="250" height="120">
+        <img id="seasar_logo_blue" src="images/seasar_logo_blue.gif" alt="The Seasar Project" height="180" width="390">
     </a>
 </div>
 
@@ -75,28 +81,82 @@
 </div><!-- contents_left -->
 
 <div id="contents_center">
+  
+<div id="article">
 
-    <div id="article">
+<div class="section">
+<h2 id="h02">
+  はじめに
+</h2>
 
-    <div class="section">
-    <h2 id="h02">
-        はじめに
-    </h2>
+<p>
+  　S2AnA.PHP5には最新版のS2Container.PHP5が必要です。<br />
+  　S2Container.PHP5のセットアップを終えてからS2AnA.PHP5の設定をしてください。<br />
+</p>
 
-    <p>
-　S2AnA.PHP5には最新版のS2Container.PHP5が必要です。<br />
-　S2Container.PHP5のセットアップを終えてからS2AnA.PHP5の設定をしてください。<br />
-    </p>
+</div>
 
-    </div>
-    <div class="section">
-    <h2 id="h02">
-        S2AnA.PHP5のインストール
-    </h2>
+<div class="section">
+<h2 id="h02"><a name="setup-pear">PEARパッケージでセットアップ</a></h2>
+  
+<h3><a name="install-pear">S2AnA.PHP5 のインストール</a></h3>
+<p>
+  　S2AnA-version.tgz を取得し、「pear install」コマンドでインストールして下さい。
+</p>
+<pre class="prettyprint">
 
-    <br />
+</pre>
+<br>
+  
+<h3><a name="setup-pear">S2AnA.PHP5 のセットアップ</a></h3>
+<p>
+  S2Container.php と S2AnA.php を読み込み、__autoload関数を次のように定義して下さい。S2AnA.PHP5が使用可能となります。
+</p>
+<pre class="prettyprint">
+&lt;?php
+require_once 'S2Container/S2Container.php';
+require_once 'S2Dao/S2Dao.php';
 
-    </div><!-- article -->
+function __autoload($class = null){
+    if($class != null){
+        include_once("$class.class.php");
+    }
+}
+?&gt;
+</pre>
+
+<p>
+  S2ContainerClassLoaderを利用する場合は、__autoload関数を次のように定義して下さい。
+</p>
+<pre class="prettyprint">
+&lt;?php
+require_once 'S2Container/S2Container.php';
+require_once 'S2Dao/S2Dao.php';
+
+S2ContainerClassLoader::import(S2CONTAINER_PHP5);
+S2ContainerClassLoader::import(S2DAO_PHP5);
+function __autoload($class = null){
+    S2ContainerClassLoader::load($class);
+}
+
+?&gt;
+</pre>
+    
+<p>開発中のアプリケーションや使用しているフレームワークで既に__autoload関数が定義されている場合は、<br />
+  上記の __autoload関数内容を定義済み __autoload関数に追記して下さい。</p>
+
+<h3><a name="uninstall-pear">S2AnA.PHP5 のアンインストール</a></h3>
+<p>
+  　 「pear uninstall」コマンドでアンインストールを行います。
+</p>
+
+<pre>
+</pre>
+
+</div>
+<br />
+
+</div><!-- article -->
 
 </div><!-- contents_center -->
 <div id="footer">
