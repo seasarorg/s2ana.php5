@@ -99,7 +99,6 @@ S2AnA.PHP5自体が認証機構を持つわけではないことに注意して�
 </p>
 
 </div>
-<br />
 <div class="section">
 <h2 id="h02">
   S2AnA.PHP5でユーザーを認証する
@@ -113,6 +112,13 @@ S2AnA.PHP5は各アプリケーションの認証情報に対してS2AnA_Authent
   <li>isAuthenticated()</li>
   <li>isUserInRole($roleName)</li>
 </ul>
+S2AnA_AuthenticationContextインタフェースを実装したクラスをコンポーネント登録することで、
+承認機能を使用することが可能になります。<br />
+<br />
+diconファイルへの記述例
+<pre class="prettyPrint">
+  &lt;component name="authenticationContext" class="S2AnA_AuthenticationContextImpl"&gt;
+</pre>
 </p>
 
 </div>
