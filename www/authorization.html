@@ -86,75 +86,31 @@
 
 <div class="section">
 <h2 id="h02">
-  はじめに
+  承認(Authentication)機能
 </h2>
-
+<h3><a name="about">S2AnA.PHP5における「承認」とは</a></h3>
 <p>
-  　S2AnA.PHP5には最新版のS2Container.PHP5が必要です。<br />
-  　S2Container.PHP5のセットアップを終えてからS2AnA.PHP5の設定をしてください。<br />
+「承認」とは、ユーザが対象物に対してアクセスする権限があるかどうかを調べ、アクセスを許可あるいは拒否する機能です。<br />
+S2AnA.PHP5では、S2ContainerのAOP機構を使って承認機能を実現します。<br />
 </p>
-
-</div>
-
-<div class="section">
-<h2 id="h02"><a name="setup-pear">PEARパッケージでセットアップ</a></h2>
-  
-<h3><a name="install-pear">S2AnA.PHP5 のインストール</a></h3>
-<p>
-  　S2AnA-version.tgz を取得し、「pear install」コマンドでインストールして下さい。
-</p>
-<pre class="prettyprint">
- pear install S2AnA-version.tgz
-</pre>
-<br>
-  
-<h3><a name="setup-pear">S2AnA.PHP5 のセットアップ</a></h3>
-<p>
-  S2Container.php と S2AnA.php を読み込み、__autoload関数を次のように定義して下さい。S2AnA.PHP5が使用可能となります。
-</p>
-<pre class="prettyprint">
-&lt;?php
-require_once 'S2Container/S2Container.php';
-require_once 'S2Dao/S2Dao.php';
-
-function __autoload($class = null){
-    if($class != null){
-        include_once("$class.class.php");
-    }
-}
-?&gt;
-</pre>
-
-<p>
-  S2ContainerClassLoaderを利用する場合は、__autoload関数を次のように定義して下さい。
-</p>
-<pre class="prettyprint">
-&lt;?php
-require_once 'S2Container/S2Container.php';
-require_once 'S2Dao/S2Dao.php';
-
-S2ContainerClassLoader::import(S2CONTAINER_PHP5);
-S2ContainerClassLoader::import(S2DAO_PHP5);
-function __autoload($class = null){
-    S2ContainerClassLoader::load($class);
-}
-
-?&gt;
-</pre>
-    
-<p>開発中のアプリケーションや使用しているフレームワークで既に__autoload関数が定義されている場合は、<br />
-  上記の __autoload関数内容を定義済み __autoload関数に追記して下さい。</p>
-
-<h3><a name="uninstall-pear">S2AnA.PHP5 のアンインストール</a></h3>
-<p>
-  　 「pear uninstall」コマンドでアンインストールを行います。
-</p>
-
-<pre>
-</pre>
 
 </div>
 <br />
+<div class="section">
+<h2 id="h02">
+  S2AnA.PHP5でユーザーを承認する
+</h2>
+<h3><a name="auth-context">承認Interceptor</a></h3>
+<p>
+S2AnA.PHP5では承認機能を実現するために以下のInterceptorを用意しています。<br />
+<ul>
+  <li>S2AnA_AuthenticatedAccessOnlyInterceptor</li>
+  <li>S2AnA_AllowInterceptor</li>
+  <li>S2AnA_DenyInterceptor</li>
+</ul>
+</p>
+
+</div>
 
 </div><!-- article -->
 
