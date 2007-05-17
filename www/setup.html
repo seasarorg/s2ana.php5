@@ -25,7 +25,7 @@
 <div id="logo">
     <h1 id="h01" class="hide">The Seasar Project</h1>
     <a href="http://www.seasar.org/">
-        <img id="seasar_logo_blue" src="images/seasar_logo_blue.gif" alt="The Seasar Project" height="180" width="390">
+        <img src="images/seasar_logo_blue.gif" alt="The Seasar Project" height="180" width="390">
     </a>
 </div>
 
@@ -33,7 +33,7 @@
 </div>
 
 <div id="navi">
-    <p><font size="-1">S2AnA.PHP5 ホーム</font></p>
+    <p><font size="-1"><a href="index.html">S2AnA.PHP5 ホーム</a> &raquo; ドキュメント &raquo; セットアップ</font></p>
 </div>
 
 </div><!-- header -->
@@ -44,7 +44,7 @@
 
     <h3>ドキュメント</h3>
     <ul>
-        <li><a href="setup.html">セットアップ</a></li>
+        <li>セットアップ</li>
         <li><a href="authentication.html">認証(Authentication)</a></li>
         <li><a href="authorization.html">承認(Authorization)</a></li>
     </ul>
@@ -95,7 +95,7 @@
 </p>
 
 </div>
-
+<br />
 <div class="section">
 <h2 id="h02"><a name="setup-pear">PEARパッケージでセットアップ</a></h2>
   
@@ -104,9 +104,16 @@
   　S2AnA-version.tgz を取得し、「pear install」コマンドでインストールして下さい。
 </p>
 <pre class="prettyprint">
- pear install S2AnA-version.tgz
+ % pear install S2AnA-version.tgz
+ install ok: channel://pear.php.net/S2AnA-version
+ 
+ % pear list 
+ ・・・
+ S2AnA             version       state
+ ・・・
+ %
 </pre>
-<br>
+<br />
   
 <h3><a name="setup-pear">S2AnA.PHP5 のセットアップ</a></h3>
 <p>
@@ -150,7 +157,11 @@ function __autoload($class = null){
   　 「pear uninstall」コマンドでアンインストールを行います。
 </p>
 
-<pre>
+<pre class="prettyprint">
+ % pear uninstall S2AnA
+ uninstall ok: channel://pear.php.net/S2AnA-version
+ 
+ % 
 </pre>
 
 </div>

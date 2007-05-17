@@ -25,7 +25,7 @@
 <div id="logo">
     <h1 id="h01" class="hide">The Seasar Project</h1>
     <a href="http://www.seasar.org/">
-        <img id="seasar_logo_blue" src="images/seasar_logo_blue.gif" alt="The Seasar Project" height="180" width="390">
+        <img src="images/seasar_logo_blue.gif" alt="The Seasar Project" height="180" width="390">
     </a>
 </div>
 
@@ -33,7 +33,7 @@
 </div>
 
 <div id="navi">
-    <p><font size="-1">S2AnA.PHP5 ホーム</font></p>
+    <p><font size="-1"><a href="index.html">S2AnA.PHP5 ホーム</a> &raquo; ドキュメント &raquo; 承認(Authorization)</font></p>
 </div>
 
 </div><!-- header -->
@@ -46,7 +46,7 @@
     <ul>
         <li><a href="setup.html">セットアップ</a></li>
         <li><a href="authentication.html">認証(Authentication)</a></li>
-        <li><a href="authorization.html">承認(Authorization)</a></li>
+        <li>承認(Authorization)</li>
     </ul>
 
     <ul>
@@ -119,8 +119,8 @@ AuthenticationContext::isAuthenticatedがfalseを返した場合、S2AnA_NotAuth
 この例外をcatchしたらログイン画面へリダイレクトするのが典型的な使用例となります。 <br />
 <br />
 diconファイルへの記述例
-<pre class="prettyPrint">
-&lt;component name="requireLogin" class="S2AnA_AuthenticatedAccessOnlyInterceptor" /&gt;
+<pre class="prettyprint">
+ &lt;component name="requireLogin" class="S2AnA_AuthenticatedAccessOnlyInterceptor" /&gt;
 </pre>
 S2AnA.PHP5パッケージに付属のana.diconに、同様のコンポーネント定義が登録されています。<br />
 </p>
@@ -136,10 +136,10 @@ S2AnA_AllowInterceptorにアクセスが許可されなかったかS2AnA_DenyInt
 S2AnA_AccessDeniedExceptionが投げられます。<br />
 <br />
 diconファイルへの記述例:単一のロールを指定する
-<pre class="prettyPrint">
-&lt;component name="requireLogin" class="S2AnA_AuthenticatedAccessOnlyInterceptor"&gt;
-  &lt;arg&gt;"roleA"&lt;/arg&gt;
-&lt;/component&gt;
+<pre class="prettyprint">
+ &lt;component name="requireLogin" class="S2AnA_AuthenticatedAccessOnlyInterceptor"&gt;
+   &lt;arg&gt;"roleA"&lt;/arg&gt;
+ &lt;/component&gt;
 </pre>
 </p>
 

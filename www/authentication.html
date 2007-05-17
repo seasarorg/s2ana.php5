@@ -25,7 +25,7 @@
 <div id="logo">
     <h1 id="h01" class="hide">The Seasar Project</h1>
     <a href="http://www.seasar.org/">
-        <img id="seasar_logo_blue" src="images/seasar_logo_blue.gif" alt="The Seasar Project" height="180" width="390">
+        <img src="images/seasar_logo_blue.gif" alt="The Seasar Project" height="180" width="390">
     </a>
 </div>
 
@@ -33,7 +33,7 @@
 </div>
 
 <div id="navi">
-    <p><font size="-1">S2AnA.PHP5 ホーム</font></p>
+    <p><font size="-1"><a href="index.html">S2AnA.PHP5 ホーム</a> &raquo; ドキュメント &raquo; 認証(Authentication)</font></p>
 </div>
 
 </div><!-- header -->
@@ -45,7 +45,7 @@
     <h3>ドキュメント</h3>
     <ul>
         <li><a href="setup.html">セットアップ</a></li>
-        <li><a href="authentication.html">認証(Authentication)</a></li>
+        <li>認証(Authentication)</li>
         <li><a href="authorization.html">承認(Authorization)</a></li>
     </ul>
 
@@ -116,8 +116,8 @@ S2AnA_AuthenticationContextインタフェースを実装したクラスをコ�
 承認機能を使用することが可能になります。<br />
 <br />
 diconファイルへの記述例
-<pre class="prettyPrint">
-  &lt;component name="authenticationContext" class="S2AnA_AuthenticationContextImpl"&gt;
+<pre class="prettyprint">
+ &lt;component name="authenticationContext" class="S2AnA_AuthenticationContextImpl"&gt;
 </pre>
 </p>
 
