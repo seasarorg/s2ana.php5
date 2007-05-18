@@ -45,12 +45,21 @@
     <h3>ドキュメント</h3>
     <ul>
         <li><a href="setup.html">セットアップ</a></li>
-        <li>認証(Authentication)</li>
+        <li>
+            認証(Authentication)
+            <font size="-2">
+                <ul>
+                    <li><a href="#about">概要</a></li>
+                    <li><a href="#s2ana-php5-authentication">S2AnA.PHP5の認証(authentication)機能</a></li>
+                    <li><a href="#context-impl">S2AnA_AuthenticationContextインタフェースを実装する</a></li>
+                </ul>
+            </font>
+        </li>
         <li><a href="authorization.html">承認(Authorization)</a></li>
     </ul>
 
     <ul>
-        <li>S2Base.PHP5 with S2AnA Login Generator</li>
+        <li>S2Base.PHP5 with S2AnA</li>
     </ul>
 
     <h3>リンク</h3>
@@ -86,7 +95,9 @@
 
 <div class="section">
 <h2 id="h02">
-  認証(Authentication)機能
+<a id="about">
+  概要
+</a>
 </h2>
 <h3><a name="about">S2AnA.PHP5における「認証」とは</a></h3>
 <p>
@@ -95,13 +106,15 @@
 <br />
 S2AnA.PHP5は個々のアプリケーションで認証した情報に対して、
 S2AnA_AuthenticationContextインタフェースを通じてアクセスします。<br />
-S2AnA.PHP5自体が認証機構を持つわけではないことに注意してください。<br />
+S2AnA.PHP5自体がユーザーを認証する機構を持つわけではないことに注意してください。<br />
 </p>
 
 </div>
 <div class="section">
 <h2 id="h02">
-  S2AnA.PHP5でユーザーを認証する
+<a id="s2ana-php5-authentication">
+  S2AnA.PHP5の認証(Authentication)機能
+</a>
 </h2>
 <h3><a name="auth-context">S2AnA_AuthenticationContextインタフェース</a></h3>
 <p>
@@ -120,8 +133,78 @@ diconファイルへの記述例
  &lt;component name="authenticationContext" class="S2AnA_AuthenticationContextImpl"&gt;
 </pre>
 </p>
-
+<h3><a name="auth-context">S2AnA_AuthenticationContextResolverインタフェース</a></h3>
+<p>
+承認機能において、S2AnA_AuthenticationContextインタフェースの実装クラスをコンテナから取得する際に、S2AnA_AuthenticationContextResolverインタフェースを経由します。
+このインタフェースは以下のメソッドを持ちます。
+<ul>
+    <li>resolve()</li>
+</ul>
+S2AnA.PHP5ではデフォルトの実装としてS2AnA_AuthenticationContextResolverImplクラスが用意されています。<br />
+よって、通常はこのインタフェースの実装を定義することはないでしょう。<br />
+<br />
+<font color="#ff0000">
+※　デフォルトの実装はコンポーネントを"authenticationContext"決め打ちで取得するので、diconファイルへの記述に注意してください。
+</font>
+</p>
 </div>
+
+<div id="section">
+<h2 id="h02">
+<a id="context-impl">
+    S2AnA_AuthenticationContextインタフェースを実装する
+</a>
+</h2>
+<p>
+S2AnA.PHP5で承認機能を使うためには、S2AnA_AuthenticationContextインタフェースを実装する必要があります。<br />
+簡単な実装例を以下に示します。<br />
+<font color="#ff0000">
+※　あくまで実装例です。<br />
+※　AuthManagerというクラスはS2AnA.PHP5には用意されていません。
+</font>
+</p>
+<pre class="prettyprint">
+&lt;?php
+
+class ExampleAuthenticationContext implements S2AnA_AuthenticationCotext
+{
+    public function getUserPrincipal()
+    {
+        return AuthManager::getLoginUser();
+    }
+
+    public function isAuthenticated()
+    {
+        $authenticated = FALSE;
+        
+        $user = $this->getUserPrincipal();
+        if ($user !== NULL) {
+            $authenticated = TRUE;
+        }
+        return $authenticated;
+    }
+    
+    public function isUserInRole($roleName)
+    {
+        $user = $this->getUserPrincipal();
+        if ($user === NULL) {
+            return FALSE;
+        }
+        $roles = $user->getRoles();
+        if (!in_array($role, $roles)) {
+            return FALSE;
+        }
+        return TRUE;
+    }
+}
+
+?&gt;
+</pre>
+注意すべき点は、承認機能では対象コンポーネントへのアクセスがあるたびに必要なメソッドを実行する点です。<br />
+これはパフォーマンス上の問題を引き起こす可能性があります。<br />
+将来的にはキャッシュ機構などの導入を検討しようと思っています。
+</div>
+<br />
 
 </div><!-- article -->
 

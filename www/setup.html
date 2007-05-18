@@ -44,13 +44,28 @@
 
     <h3>ドキュメント</h3>
     <ul>
-        <li>セットアップ</li>
+        <li>セットアップ
+        <font size="-2">
+        <ul>
+            <li>
+                <a href="#setup-pear">
+                    PEARパッケージでセットアップ
+                </a>
+            </li>
+            <li>
+                <a href="#setup-full">
+                    フルパッケージでセットアップ
+                </a>
+            </li>
+        </ul>
+        </font>
+        </li>
         <li><a href="authentication.html">認証(Authentication)</a></li>
         <li><a href="authorization.html">承認(Authorization)</a></li>
     </ul>
 
     <ul>
-        <li>S2Base.PHP5 with S2AnA Login Generator</li>
+        <li>S2Base.PHP5 with S2AnA</li>
     </ul>
 
     <h3>リンク</h3>
@@ -166,6 +181,60 @@ function __autoload($class = null){
 
 </div>
 <br />
+<div id="section">
+<h2 id="h02"><a name="setup-full">フルパッケージでセットアップ</a></h2>
+<p>
+s2ana.php5-version.tar.gz をダウンロード後、解凍すると以下のようなディレクトリが展開されます。
+</p>
+<pre>
+s2ana.php5
+  +-- build/
+        +-- s2ana.php5        ---- 実行ソースディレクトリ
+        +-- docs/             ---- ドキュメントディレクトリ
+        +-- pear/             ---- pearパッケージディレクトリ
+  +-- examples/               ---- examples ディレクトリ
+  +-- src/                    ---- ソースディレクトリ
+  +-- test/                   ---- テストコードディレクトリ
+  +-- S2AnA.php               ---- S2AnA.PHP5 設定ファイル
+  +-- Apache_Software_License_2.0.txt
+  +-- ChangeLog
+</pre>
+<p>
+  S2Container.php と S2AnA.php を読み込み、__autoload関数を次のように定義して下さい。S2AnA.PHP5が使用可能となります。
+</p>
+<pre class="prettyprint">
+&lt;?php
+require_once 'S2Container/S2Container.php';
+require_once 'S2Dao/S2Dao.php';
+
+function __autoload($class = null){
+    if($class != null){
+        include_once("$class.class.php");
+    }
+}
+?&gt;
+</pre>
+
+<p>
+  S2ContainerClassLoaderを利用する場合は、__autoload関数を次のように定義して下さい。
+</p>
+<pre class="prettyprint">
+&lt;?php
+require_once 'S2Container/S2Container.php';
+require_once 'S2Dao/S2Dao.php';
+
+S2ContainerClassLoader::import(S2CONTAINER_PHP5);
+S2ContainerClassLoader::import(S2DAO_PHP5);
+function __autoload($class = null){
+    S2ContainerClassLoader::load($class);
+}
+
+?&gt;
+</pre>
+    
+<p>開発中のアプリケーションや使用しているフレームワークで既に__autoload関数が定義されている場合は、<br />
+  上記の __autoload関数内容を定義済み __autoload関数に追記して下さい。</p>
+</div>
 
 </div><!-- article -->
 

@@ -45,26 +45,6 @@
  *     }
  * 
  */
- 
-/**
- * S2AnA.PHP5 ROOT Directory
- */
-define('S2ANA_PHP5', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'S2AnA');
-ini_set('include_path', 
-        S2ANA_PHP5 . PATH_SEPARATOR . ini_get('include_path'));
 
-/**
- * S2AnA.PHP5 Core Classes
- */
-//require_once 's2ana.core.classes.php';
-//if(class_exists('S2ContainerClassLoader')){
-//    S2ContainerClassLoader::import(S2ANA_PHP5);
-//}
-
-/**
- * Messages Resouce File
- */
-if(class_exists('S2ContainerMessageUtil')){
-    S2ContainerMessageUtil::addMessageResource(S2ANA_PHP5 . '/AnAMessages.properties');
-}
+require_once dirname(__FILE__) . '/build/s2ana.php5/S2AnA.php'
 ?>
