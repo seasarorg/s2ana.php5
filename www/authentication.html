@@ -104,8 +104,7 @@
 「認証」とは、システムにアクセスしているユーザーが誰であるかの識別と特定を行う機能です。<br />
 認証を行うことで、対象物へのユーザーの権限を適切に判断することができます。<br />
 <br />
-S2AnA.PHP5は個々のアプリケーションで認証した情報に対して、
-S2AnA_AuthenticationContextインタフェースを通じてアクセスします。<br />
+S2AnA.PHP5は個々のアプリケーションで認証した情報に対して、S2AnA_AuthenticationContextインタフェースを通じてアクセスします。<br />
 S2AnA.PHP5自体がユーザーを認証する機構を持つわけではないことに注意してください。<br />
 </p>
 
@@ -125,8 +124,7 @@ S2AnA.PHP5は各アプリケーションの認証情報に対してS2AnA_Authent
   <li>isAuthenticated()</li>
   <li>isUserInRole($roleName)</li>
 </ul>
-S2AnA_AuthenticationContextインタフェースを実装したクラスをコンポーネント登録することで、
-承認機能を使用することが可能になります。<br />
+S2AnA_AuthenticationContextインタフェースを実装したクラスをコンポーネント登録することで、<a href="authorization.html">承認機能</a>を使用することが可能になります。<br />
 <br />
 diconファイルへの記述例
 <pre class="prettyprint">
@@ -135,7 +133,7 @@ diconファイルへの記述例
 </p>
 <h3><a name="auth-context">S2AnA_AuthenticationContextResolverインタフェース</a></h3>
 <p>
-承認機能において、S2AnA_AuthenticationContextインタフェースの実装クラスをコンテナから取得する際に、S2AnA_AuthenticationContextResolverインタフェースを経由します。
+<a href="authorization.html">承認機能</a>において、S2AnA_AuthenticationContextインタフェースの実装クラスをコンテナから取得する際に、S2AnA_AuthenticationContextResolverインタフェースを経由します。
 このインタフェースは以下のメソッドを持ちます。
 <ul>
     <li>resolve()</li>
@@ -156,8 +154,7 @@ S2AnA.PHP5ではデフォルトの実装としてS2AnA_AuthenticationContextReso
 </a>
 </h2>
 <p>
-S2AnA.PHP5で承認機能を使うためには、S2AnA_AuthenticationContextインタフェースを実装する必要があります。<br />
-簡単な実装例を以下に示します。<br />
+S2AnA_AuthenticationContextインタフェースのの簡単な実装例を以下に示します。<br />
 <font color="#ff0000">
 ※　あくまで実装例です。<br />
 ※　AuthManagerというクラスはS2AnA.PHP5には用意されていません。
@@ -200,7 +197,7 @@ class ExampleAuthenticationContext implements S2AnA_AuthenticationCotext
 
 ?&gt;
 </pre>
-注意すべき点は、承認機能では対象コンポーネントへのアクセスがあるたびに必要なメソッドを実行する点です。<br />
+注意すべき点は、<a href="authorization.html">承認機能</a>は対象コンポーネントへのアクセスがあるたびにこれらメソッドを実行する点です。<br />
 これはパフォーマンス上の問題を引き起こす可能性があります。<br />
 将来的にはキャッシュ機構などの導入を検討しようと思っています。
 </div>
