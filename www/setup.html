@@ -137,7 +137,7 @@
 <pre class="prettyprint">
 &lt;?php
 require_once 'S2Container/S2Container.php';
-require_once 'S2Dao/S2Dao.php';
+require_once 'S2AnA/S2AnA.php';
 
 function __autoload($class = null){
     if($class != null){
@@ -153,10 +153,10 @@ function __autoload($class = null){
 <pre class="prettyprint">
 &lt;?php
 require_once 'S2Container/S2Container.php';
-require_once 'S2Dao/S2Dao.php';
+require_once 'S2AnA/S2AnA.php';
 
 S2ContainerClassLoader::import(S2CONTAINER_PHP5);
-S2ContainerClassLoader::import(S2DAO_PHP5);
+S2ContainerClassLoader::import(S2ANA_PHP5);
 function __autoload($class = null){
     S2ContainerClassLoader::load($class);
 }
@@ -205,7 +205,7 @@ s2ana.php5
 <pre class="prettyprint">
 &lt;?php
 require_once 'S2Container/S2Container.php';
-require_once 'S2Dao/S2Dao.php';
+require_once 'S2AnA/S2AnA.php';
 
 function __autoload($class = null){
     if($class != null){
@@ -221,10 +221,10 @@ function __autoload($class = null){
 <pre class="prettyprint">
 &lt;?php
 require_once 'S2Container/S2Container.php';
-require_once 'S2Dao/S2Dao.php';
+require_once 'S2AnA/S2AnA.php';
 
 S2ContainerClassLoader::import(S2CONTAINER_PHP5);
-S2ContainerClassLoader::import(S2DAO_PHP5);
+S2ContainerClassLoader::import(S2ANA_PHP5);
 function __autoload($class = null){
     S2ContainerClassLoader::load($class);
 }
