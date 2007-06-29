@@ -94,7 +94,19 @@
       <php expression="require_once '${project.test.dir}/test.environment.php'" />
       <phpunit2 haltonfailure="true" printsummary="true">
         <batchtest>
-          <fileset dir="${project.test.dir}/s2ana.php5/org/seasar/security/authorization">
+          <fileset dir="${project.test.dir}/s2ana.php5/org/seasar/security/context">
+            <include name="*Test.php"/>
+          </fileset>
+          <fileset dir="${project.test.dir}/s2ana.php5/org/seasar/security/exception">
+            <include name="*Test.php"/>
+          </fileset>
+          <fileset dir="${project.test.dir}/s2ana.php5/org/seasar/security/interceptor">
+            <include name="*Test.php"/>
+          </fileset>
+          <fileset dir="${project.test.dir}/s2ana.php5/org/seasar/security/resolver">
+            <include name="*Test.php"/>
+          </fileset>
+          <fileset dir="${project.test.dir}/s2ana.php5/org/seasar/security/util">
             <include name="*Test.php"/>
           </fileset>
         </batchtest>
