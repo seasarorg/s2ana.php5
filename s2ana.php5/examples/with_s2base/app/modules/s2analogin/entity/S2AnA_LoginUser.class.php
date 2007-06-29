@@ -7,26 +7,24 @@ class S2AnA_LoginUser {
     const id_COLUMN = "id";
     public function setId($val){$this->id = $val;}
     public function getId(){return $this->id;}
+    
+    protected $login;
+    const login_COLUMN = "login";
+    public function setLogin($val){$this->login = $val;}
+    public function getLogin(){return $this->login;}
 
-    protected $name;
-    const name_COLUMN = "name";
-    public function setName($val){$this->name = $val;}
-    public function getName(){return $this->name;}
-
-    protected $password;
-    const password_COLUMN = "password";
-    public function setPassword($val){$this->password = $val;}
-    public function getPassword(){return $this->password;}
-
+    protected $salted_password;
+    const salted_password_COLUMN = "salted_password";
+    public function setSalted_password($val){$this->salated_password = $val;}
+    public function getSalted_password(){return $this->salted_password;}
 
     public function __toString() {
         $buf = array();
         $buf[] = 'id => ' . $this->getId();
-        $buf[] = 'name => ' . $this->getName();
-        $buf[] = 'password => ' . $this->getPassword();
+        $buf[] = 'login => ' . $this->getLogin();
+        $buf[] = 'salted_password => ' . $this->getSalated_Password();
         return '{' . implode(', ',$buf) . '}';
     }
-
 
     /*
     private $prop;
