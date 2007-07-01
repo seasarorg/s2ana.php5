@@ -8,7 +8,10 @@ class LoginDaoTest extends PHPUnit2_Framework_TestCase {
         parent::__construct($name);
     }
 
-    function testA() {
+    function testGetUser() {
+    }
+    
+    function testGetLoginUser() {
     }
 
     function setUp(){

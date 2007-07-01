@@ -1,5 +1,5 @@
 <?php
-class LoginAction
+class IndexAction
     implements S2Base_Action {
     private $loginService;
 
@@ -9,9 +9,6 @@ class LoginAction
         $redirect_module = $request->getParam(S2ANA_PHP5_REDIRECT_MODULE_KEY);
         $redirect_action = $request->getParam(S2ANA_PHP5_REDIRECT_ACTION_KEY);
         
-        $view->assign('warnings', $this->loginService->getWarnings());
-        $view->assign('login', $login_id);
-        $view->assign('password', $password);
         $view->assign('redirect_module', $redirect_module);
         $view->assign('redirect_action', $redirect_action);
         

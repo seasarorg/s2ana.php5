@@ -8,6 +8,11 @@
 
 <div title="S2AnA::login" class="form">
   <h3>Please Login</h3>
+  <div id="warnings">
+  {foreach from=$warnings item=message}
+      <li>{$message}</li>
+  {/foreach}
+  </div>
 
   <div class="form-padding">
       <form action="d.php" method="post" accept-charset="utf-8">
