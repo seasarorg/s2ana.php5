@@ -1,8 +1,5 @@
 2007-06-29 yonekawa(S2AnA.PHP5-0.2.0)
     
-    * remove: s2ana-context.dicon
-        ana.diconにマージしました
-
     * modify: deployment change
     
 2007-05-18 yonekawa(S2AnA.PHP5-0.1.1)
