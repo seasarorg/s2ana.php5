@@ -11,7 +11,10 @@ class LoginServiceImplTest extends PHPUnit2_Framework_TestCase {
 
     function testLoginSuccess()
     {
-        $success = $this->service->login();
+        $login_id = 'yonekawa';
+        $password = 'password';
+        
+        $success = $this->service->login($login_id, $password);
         $this->assertEquals($success, TRUE);
     }
     
@@ -50,7 +53,7 @@ class LoginServiceImplTest extends PHPUnit2_Framework_TestCase {
         $this->assertEquals($success, FALSE);
         
         $warnings = $this->service->getWarnings();
-        $should_warnings = array( 'Your login was incorect' );
+        $should_warnings = array( 'Your login was incorrect' );
         $this->assertEquals($warnings, $should_warnings);
     }
 
@@ -62,6 +65,7 @@ class LoginServiceImplTest extends PHPUnit2_Framework_TestCase {
         include_once($moduleDir . "/{$this->module}.inc.php");
         $this->container = S2ContainerFactory::create($dicon);
         $this->service = $this->container->getComponent("LoginService");
+        
     }
 
     function tearDown()

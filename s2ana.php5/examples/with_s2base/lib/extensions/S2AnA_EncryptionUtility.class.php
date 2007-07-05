@@ -5,33 +5,26 @@
  *
  * @author yonekawa
  */
-class S2AnA_EncryptionUtility
+class S2AnA_PasswordEncoder
 {
-    /**
-     * @param  string 平文文字列
-     * @param  string 暗号化に使うsalt
-     * @return string 暗号化された文字列
-     */
-    public static function encrypt($string, $salt = NULL)
+    private $algorithm;
+    private $key;
+    
+    public function __construct($algorithm)
     {
-        // encrypt...
-        $encrypt_string = $string;
-        return $encrypt_string;
+        $this->algorithm = $algorithm;
     }
     
-    public static function hashed($string)
+    // コンストラクタでアルゴリズム指定
+    // 文字列とsaltをマージ(単純に連結しているだけ。saltは{}で囲まれているものとするらしいが、第三引数で変えられる)
+    // アルゴリズムでdigest
+    public function encodeP($string, $salt)
     {
         // hashed...
-        $hashed_string = $string;
+        $hashed_string = substr(hash_hmac(self::ALGORITHM, $string, self::KEY), 0, 40);
         return $hashed_string;
     }
     
-    public static function salted($hashed_string, $salt)
-    {
-        // salted...
-        $salted_string = $hashed_string;
-        return $salted_string;
-    }
 }
 
 ?>

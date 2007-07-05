@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>s2analogin</title>
 </head>
 <body>
@@ -13,16 +13,28 @@
       <li>{$message}</li>
   {/foreach}
   </div>
-
+  
   <div class="form-padding">
       <form action="d.php" method="post" accept-charset="utf-8">
+        <input type="hidden" name="mod" value="{$login_module|escape}" id="module">
+        <input type="hidden" name="act" value="{$login_action|escape}" id="action">
+        <input type="hidden" name="redirect_module" value="{$redirect_module}" id="redirect_module">
+        <input type="hidden" name="redirect_action" value="{$redirect_action}" id="redirect_action">    
         <table>
-            <input type="hidden" name="mod" value="{$login_module|escape}" id="module">
-            <input type="hidden" name="act" value="{$login_action|escape}" id="action">
-            <input type="hidden" name="redirect_module" value="{$redirect_module}" id="redirect_module">
-            <input type="hidden" name="redirect_action" value="{$redirect_action}" id="redirect_action">
-            Login　ID <input type="text" name="login" size="30" value="{$login|escape}"/><br/>
-            Password <input type="password" name="password" size="30"/><br/>
+            <tr>
+                <td>Login ID</td>
+                <td><input type="text" name="login" size="30" value="{$login|escape}"/></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" size="30"/></td>
+            </tr>
+            <tr>
+                {if $remember_me === TRUE}{assign var=checked value="checked"}{/if}
+                <td colspan="2">
+                    <input type="checkbox" name="remember_me" value="1" $checked/>Remember me
+                </td>
+            </tr>
         </table>
 
         <div class="button-bar">

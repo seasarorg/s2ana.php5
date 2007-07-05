@@ -11,6 +11,11 @@ class S2AnA_SessionManager
         $_SESSION[$key] = $value;
         return TRUE;
     }
+    
+    public static function get($key, $value)
+    {
+        return $_SESSION[$key];
+    }
 }
 
 ?>

@@ -5,7 +5,6 @@ class S2AnA_User
     public function __construct(){}
 
     protected $id;
-    const id_ID = "identity"
     const id_COLUMN = "id";
     public function setId($val){$this->id = $val;}
     public function getId(){return $this->id;}
@@ -32,13 +31,18 @@ class S2AnA_User
 
     protected $salted_password;
     const salted_password_COLUMN = "salted_password";
-    public function setSalted_password($val){$this->salated_password = $val;}
+    public function setSalted_password($val){$this->salted_password = $val;}
     public function getSalted_password(){return $this->salted_password;}
 
     protected $salt;
     const salt_COLUMN = "salt";
     public function setSalt($val){$this->salt = $val;}
     public function getSalt(){return $this->salt;}
+    
+    protected $role;
+    const role_COLUMN = "role";
+    public function setRole($val){$this->role = $val;}
+    public function getRole(){return $this->role;}
 
     protected $verified;
     const verified_COLUMN = "verified";
@@ -57,13 +61,18 @@ class S2AnA_User
     
     protected $created_at;
     const created_at_COLUMN = "created_at";
-    public function setCreated_in_at($val){$this->created_at = $val;}
+    public function setCreated_at($val){$this->created_at = $val;}
     public function getCreated_at(){return $this->created_at;}
     
     protected $updated_at;
-    const updated_at_COLUMN = "logged_in_at";
+    const updated_at_COLUMN = "updated_at";
     public function setUpdated_at($val){$this->updated_at = $val;}
     public function getUpdated_at(){return $this->updated_at;}
+    
+    protected $deleted_after;
+    const deleted_after_COLUMN = "deleted_after";
+    public function setDeleted_after($val){$this->deleted_after = $val;}
+    public function getDeleted_after(){return $this->deleted_after;}
 
     public function __toString() {
         $buf = array();
@@ -74,8 +83,12 @@ class S2AnA_User
         $buf[] = 'lastname => ' . $this->getLastName();
         $buf[] = 'salted_password => ' . $this->getSalated_Password();
         $buf[] = 'salt => ' . $this->getSalt();
+        $buf[] = 'Role => ' . $this->getRole();
         $buf[] = 'verified => ' . $this->getVerified();
         $buf[] = 'deleted => ' . $this->getDeleted();
+        $buf[] = 'created_at => ' . $this->getDeleted_after();
+        $buf[] = 'updated_at => ' . $this->getUpdated_at();
+        $buf[] = 'deleted_after => ' . $this->getDeleted_after();
         return '{' . implode(', ',$buf) . '}';
     }
 }

@@ -13,7 +13,6 @@ class S2AnA_SessionContext implements S2AnA_AuthenticationContext
         if (is_null($user) || $user instanceof S2AnA_User) {
             return FALSE;
         }
-        
         return TRUE;
     }
     
