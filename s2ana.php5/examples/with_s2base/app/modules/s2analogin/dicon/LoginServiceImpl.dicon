@@ -6,7 +6,7 @@
     <component class="LoginServiceImpl">
         <!-- <aspect></aspect> -->
     </component>
-    <component class="LoginDao">
+    <component class="S2AnA_UserDao">
         <aspect>dao.interceptor</aspect>
     </component>
 </components>

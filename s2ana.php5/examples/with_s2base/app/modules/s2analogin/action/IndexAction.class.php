@@ -17,6 +17,8 @@ class IndexAction
         $view->assign('login_action', S2ANA_PHP5_LOGIN_ACTION_NAME);
         $view->assign('signup', S2ANA_PHP5_SIGNUP_ACTION_NAME);
         $view->assign('forgot_password_action', S2ANA_PHP5_FORGOT_PASSWORD_ACTION_NAME);
+        
+        return 'login.tpl';
     }
 
 }

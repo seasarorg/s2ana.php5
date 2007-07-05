@@ -1,9 +1,11 @@
 <?php
-class S2AnA_LoginUser {
+class S2AnA_User
+{
     const TABLE = "s2ana_user";
     public function __construct(){}
 
     protected $id;
+    const id_ID = "identity"
     const id_COLUMN = "id";
     public function setId($val){$this->id = $val;}
     public function getId(){return $this->id;}
@@ -47,6 +49,21 @@ class S2AnA_LoginUser {
     const deleted_COLUMN = "deleted";
     public function setDeleted($val){$this->deleted = $val;}
     public function getDeleted(){return $this->deleted;}
+    
+    protected $logged_in_at;
+    const logged_in_at_COLUMN = "logged_in_at";
+    public function setLogged_in_at($val){$this->logged_in_at = $val;}
+    public function getLogged_in_at(){return $this->logged_in_at;}
+    
+    protected $created_at;
+    const created_at_COLUMN = "created_at";
+    public function setCreated_in_at($val){$this->created_at = $val;}
+    public function getCreated_at(){return $this->created_at;}
+    
+    protected $updated_at;
+    const updated_at_COLUMN = "logged_in_at";
+    public function setUpdated_at($val){$this->updated_at = $val;}
+    public function getUpdated_at(){return $this->updated_at;}
 
     public function __toString() {
         $buf = array();
@@ -61,13 +78,5 @@ class S2AnA_LoginUser {
         $buf[] = 'deleted => ' . $this->getDeleted();
         return '{' . implode(', ',$buf) . '}';
     }
-
-    /*
-    private $prop;
-    const prop_RELNO = 0;
-    const prop_RELKEYS = 'this_fk:other_pk';
-    public function setProp(OtherEntity $entity){ $this->prop = $entity; }
-    public function getProp(){ return $this->prop; }
-    */
 }
 ?>

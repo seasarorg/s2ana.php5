@@ -28,7 +28,9 @@ class S2AnA_EncryptionUtility
     
     public static function salted($hashed_string, $salt)
     {
-        
+        // salted...
+        $salted_string = $hashed_string;
+        return $salted_string;
     }
 }
 
