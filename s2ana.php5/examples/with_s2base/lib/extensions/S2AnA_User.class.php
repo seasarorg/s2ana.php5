@@ -29,10 +29,10 @@ class S2AnA_User
     public function setLastName($val){$this->lastname = $val;}
     public function getLastName(){return $this->lastname;}
 
-    protected $salted_password;
-    const salted_password_COLUMN = "salted_password";
-    public function setSalted_password($val){$this->salted_password = $val;}
-    public function getSalted_password(){return $this->salted_password;}
+    protected $hashed_password;
+    const hashed_password_COLUMN = "hashed_password";
+    public function setHashed_password($val){$this->hashed_password = $val;}
+    public function getHashed_password(){return $this->hashed_password;}
 
     protected $salt;
     const salt_COLUMN = "salt";
@@ -81,7 +81,7 @@ class S2AnA_User
         $buf[] = 'email => ' . $this->getEmail();
         $buf[] = 'firstname => ' . $this->getFirstName();
         $buf[] = 'lastname => ' . $this->getLastName();
-        $buf[] = 'salted_password => ' . $this->getSalated_Password();
+        $buf[] = 'hashed_password => ' . $this->getHashed_Password();
         $buf[] = 'salt => ' . $this->getSalt();
         $buf[] = 'Role => ' . $this->getRole();
         $buf[] = 'verified => ' . $this->getVerified();
