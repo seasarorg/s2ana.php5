@@ -1,8 +1,6 @@
 <?php
-class LoginServiceImpl 
-    implements LoginService
+class LoginServiceImpl implements LoginService
 {
-
     private $userDao;
     private $warnings;
 
@@ -15,16 +13,16 @@ class LoginServiceImpl
         if( ! $this->validateParam($login, $password) )
             return FALSE;
 
-        $verified = 1;
-        $deleted = 0;
+        $verified = self::VERIFIED;
+        $deleted = self::NOT_DELETED;
         $user = $this->userDao->getVerifiedUser($login, $verified, $deleted);
         if (is_null($user)) {
             $this->addWarnings('Your login was incorrect');
             return FALSE;
         }
 
-        $user_salt = $user->getSalt();
-        $hashed_password = hash_hmac('sha1', $password, $user_salt);
+        $salt = $user->getSalt();
+        $hashed_password = hash_hmac('sha1', $password, $salt);
 
         $login_user = $this->userDao->getAuthenticatedUser($login, $hashed_password);
         if (is_null($login_user)) {
@@ -36,6 +34,7 @@ class LoginServiceImpl
         return TRUE;
     }
 
+/*
     // temp
     public function addUser()
     {
@@ -61,6 +60,7 @@ class LoginServiceImpl
 
         $this->userDao->insert($user);
     }
+*/
 
     public function setUserDao(S2AnA_UserDao $dao){
         $this->userDao = $dao;

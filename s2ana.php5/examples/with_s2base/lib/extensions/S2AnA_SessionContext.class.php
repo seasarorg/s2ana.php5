@@ -2,6 +2,8 @@
 
 class S2AnA_SessionContext implements S2AnA_AuthenticationContext
 {
+    private $userDao;
+    
     public function getUserPrincipal()
     {
         return S2AnA_SessionManager::get(S2ANA_PHP5_SESSION_USER_KEY);
@@ -17,7 +19,11 @@ class S2AnA_SessionContext implements S2AnA_AuthenticationContext
         $login = $user->getLogin();
         $hashed_password = $user->getHashed_password();
 
-        $dao->getAuthenticatedUser( $login, $hashed_password );
+        
+        $authenticated_user = $userDao->getAuthenticatedUser( $login, $hashed_password );
+        if (is_null($authenticated_user)) {
+            return FALSE;
+        }
         return TRUE;
     }
 
@@ -32,6 +38,11 @@ class S2AnA_SessionContext implements S2AnA_AuthenticationContext
         }
 
         return TRUE;
+    }
+    
+    public function setUserDao(S2AnA_UserDao $dao)
+    {
+        $this->userDao = $dao;
     }
 }
 

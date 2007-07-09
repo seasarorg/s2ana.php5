@@ -1,13 +1,10 @@
 <?php
-class LoginAction
-    implements S2Base_Action {
+class LoginAction implements S2Base_Action
+{
     private $loginService;
 
-    public function execute(S2Base_Request $request,
-                            S2Base_View $view){
-
-        $this->loginService->addUser();
-
+    public function execute(S2Base_Request $request, S2Base_View $view)
+    {
         $login_id = $request->getParam('login');
         $password = $request->getParam('password');
         $redirect_module = $request->getParam(S2ANA_PHP5_REDIRECT_MODULE_KEY);
@@ -30,7 +27,8 @@ class LoginAction
         }
     }
 
-    public function setLoginService(LoginService $service){
+    public function setLoginService(LoginService $service)
+    {
         $this->loginService = $service;
     }
     
@@ -38,11 +36,6 @@ class LoginAction
     {
         $redirect = 'redirect:' . $module . ':' . $action;
         return $redirect;
-    }
-    
-    private function loginFailure(S2Base_View $view)
-    {
-        
     }
 }
 ?>
