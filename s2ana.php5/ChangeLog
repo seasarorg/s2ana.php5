@@ -1,5 +1,6 @@
 2007-06-29 yonekawa(S2AnA.PHP5-0.2.0)
-    
+
+    * add: S2AnA_SessionUtilityクラスを追加しました。
     * fix: コンストラクタインジェクションでの複数ロール指定に対応しました。
         - Java版のように{"roleA","roleB"}という文法が使えないため、<arg>タグを増やす形式になります。
         - ex)

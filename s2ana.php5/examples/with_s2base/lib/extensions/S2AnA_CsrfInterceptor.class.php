@@ -32,8 +32,8 @@ class S2AnA_SecurityToken
 
     public function getSecurityToken()
     {
-        $session_id = session_id();
-        if ( strlen( $session_id ) <= 0 ) {
+        $session_id = S2AnA_SessionUtility::getSessionId();
+        if ($session_id === FALSE) {
             return FALSE;
         }
         $token = md5($session_id);
@@ -41,7 +41,7 @@ class S2AnA_SecurityToken
     }
     public function validateSecurityToken()
     {
-        if (array_key_exists( $this->tokenName, $_POST )
+        if (array_key_exists($this->tokenName, $_POST)
             || strlen( $_POST[$this->tokenName] ) <= 0)
         {
             return FALSE;
