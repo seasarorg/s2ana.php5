@@ -60,19 +60,18 @@ S2ContainerClassLoader::import(S2BASE_PHP5_ROOT . '/app/commons/dao');
 /**
  * S2AnA setting
  */
+define('S2ANA_PHP5_USER_DICON', S2BASE_PHP5_ROOT . '/app/commons/dicon/user.dicon');
+define('S2ANA_PHP5_USER_TABLE', 's2ana_user');
 define('S2ANA_PHP5_SESSION_USER', 's2ana_php5_login_user');
-define('S2ANA_PHP5_DATABASE_USER_TABLE', 's2ana_user');
-
 define('S2ANA_PHP5_REDIRECT_MODULE_KEY', 's2ana_php5_redirect_module');
 define('S2ANA_PHP5_REDIRECT_ACTION_KEY', 's2ana_php5_redirect_action');
 define('S2ANA_PHP5_LOGIN_MODULE_NAME', 's2analogin');
 define('S2ANA_PHP5_LOGIN_ACTION_NAME', 'login');
-define('S2ANA_PHP5_SIGNUP_ACTION_NAME', 'signup');
-define('S2ANA_PHP5_FORGOT_PASSWORD_ACTION_NAME', 'forgot_password');
 
 // S2AnA not implement setting
 define('S2ANA_PHP5_HASH_SALT', 's2anas2ana');
-define('S2ANA_PHP5_CSRF_TICKET_NAME', 's2ana_csrf_ticket');
+define('S2ANA_PHP5_SIGNUP_ACTION_NAME', 'signup');
+define('S2ANA_PHP5_FORGOT_PASSWORD_ACTION_NAME', 'forgot_password');
 
 /**
  * autoload setting

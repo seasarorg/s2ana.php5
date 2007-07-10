@@ -4,15 +4,21 @@ class S2AnA_SessionContext implements S2AnA_AuthenticationContext
 {
     private $userDao;
     
+    public function __construct()
+    {
+        $container = S2ContainerFactory::create(S2ANA_PHP5_USER_DICON);
+        $this->userDao = $container->getComponent('S2AnA_UserDao');
+    }
+    
     public function getUserPrincipal()
     {
-        return S2AnA_SessionManager::get(S2ANA_PHP5_SESSION_USER_KEY);
+        return S2AnA_SessionUtility::get(S2ANA_PHP5_SESSION_USER);
     }
 
     public function isAuthenticated()
     {
         $user = $this->getUserPrincipal();
-        if (is_null($user) || $user instanceof S2AnA_User) {
+        if ( ! $user || $user instanceof S2AnA_User) {
             return FALSE;
         }
 
@@ -34,15 +40,10 @@ class S2AnA_SessionContext implements S2AnA_AuthenticationContext
             return FALSE;
         }
         if (strcasecmp($roleName, $user->getRole()) !== 0){
-            return FALSE
+            return FALSE;
         }
 
         return TRUE;
-    }
-    
-    public function setUserDao(S2AnA_UserDao $dao)
-    {
-        $this->userDao = $dao;
     }
 }
 

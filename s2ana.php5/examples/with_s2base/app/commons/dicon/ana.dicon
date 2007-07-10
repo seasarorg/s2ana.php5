@@ -2,8 +2,8 @@
 <!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
     "http://www.seasar.org/dtd/components21.dtd">
 <components namespace="s2ana">
-    <include　path="%S2BASE_PHP5_ROOT%/app/commons/dicon/s2ana-context.dicon" />
-
     <component name="requireLogin" class="S2AnA_AuthenticatedAccessOnlyInterceptor" />
     <component name="authenticationContextResolver" class="S2AnA_AuthenticationContextResolverImpl" />
+    
+    <component name="authenticationContext" class="S2AnA_SessionContext" />
 </components>

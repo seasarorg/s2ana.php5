@@ -4,7 +4,7 @@
  * PHP session utility
  * @author yonekawa
  */
-class S2AnA_SessionUtitlity
+class S2AnA_SessionUtility
 {
     public static function init()
     {
@@ -20,7 +20,7 @@ class S2AnA_SessionUtitlity
         return TRUE;
     }
 
-    public static function get($key, $value)
+    public static function get($key)
     {
         self::init();
         if (array_key_exists($key, $_SESSION) === FALSE) {

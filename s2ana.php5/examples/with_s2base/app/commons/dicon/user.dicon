@@ -3,7 +3,7 @@
 "http://www.seasar.org/dtd/components21.dtd">
 <components>
     <include path="%S2BASE_PHP5_ROOT%/app/commons/dicon/dao.dicon"/>
-    <component class="LoginServiceImpl">
-        <!-- <aspect></aspect> -->
+    <component class="S2AnA_UserDao">
+        <aspect>dao.interceptor</aspect>
     </component>
 </components>

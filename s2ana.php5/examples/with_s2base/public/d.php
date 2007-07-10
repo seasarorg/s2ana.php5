@@ -18,9 +18,11 @@ try{
     $request = new S2Base_RequestImpl();    
     $request->setParam(S2ANA_PHP5_REDIRECT_MODULE_KEY, 
                        $request->getParam(S2BASE_PHP5_REQUEST_MODULE_KEY));
-    $request->setParam(S2ANA_PHP5_REDIRECT_MODULE_KEY, 
+    $request->setParam(S2ANA_PHP5_REDIRECT_ACTION_KEY, 
                        $request->getParam(S2BASE_PHP5_REQUEST_ACTION_KEY));
-
+    
+    $request->setParam('redirect', TRUE);
+    
     $request->setModule(S2ANA_PHP5_LOGIN_MODULE_NAME);
     $request->setAction(S2ANA_PHP5_LOGIN_ACTION_NAME);
 

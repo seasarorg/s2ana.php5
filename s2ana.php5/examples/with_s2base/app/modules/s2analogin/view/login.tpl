@@ -3,16 +3,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>s2analogin</title>
+
+<link rel="stylesheet" type="text/css" href="/withs2base/css/s2ana.css" />
+
 </head>
 <body>
 
 <div title="S2AnA::login" class="form">
   <h3>Please Login</h3>
-  <div id="warnings">
+  <div id="warnings" class="warnings">
   {foreach from=$warnings item=message}
       <li>{$message}</li>
   {/foreach}
   </div>
+  
+  <br />
   
   <div class="form-padding">
       <form action="d.php" method="post" accept-charset="utf-8">

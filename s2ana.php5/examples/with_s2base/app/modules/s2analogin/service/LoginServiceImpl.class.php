@@ -30,7 +30,7 @@ class LoginServiceImpl implements LoginService
             return FALSE;
         }
 
-        S2AnA_SessionManager::set(S2ANA_PHP5_SESSION_USER, $login_user);
+        S2AnA_SessionUtility::set(S2ANA_PHP5_SESSION_USER, $login_user);
         return TRUE;
     }
 
@@ -76,7 +76,7 @@ class LoginServiceImpl implements LoginService
         $this->warnings[] = $warning_mesage;
     }
 
-    private validateParam($login = NULL, $password = NULL)
+    private function validateParam($login = NULL, $password = NULL)
     {
         if (is_null($login))
             $this->addWarnings('Parameter login is required');
