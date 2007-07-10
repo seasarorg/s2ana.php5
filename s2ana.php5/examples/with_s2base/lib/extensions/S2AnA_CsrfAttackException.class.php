@@ -24,23 +24,11 @@
 /**
  * @author yonekawa
  */
-class S2AnA_CsrfInterceptor extends S2Container_AbstractInterceptor
+class S2AnA_CsrfAttackException extends S2Container_S2RuntimeException
 {
-    private $securityToken;
-
-    public function setSecurityToken(S2AnA_SecurityToken $securityToken)
+    public function __construct()
     {
-        $this->securityToken = $securityToken;
-    }
-
-    public function invoke(S2Container_MethodInvocation $invocation)
-    {
-        if (S2AnA_RequestUtility::isPost() && $this->securityToken->validateSecurityToken()) {
-            return $invocation->proceed();
-        } else {
-            throw new S2AnA_CsrfAttackException($invocation->getThis(),
-                                                $this->securityToken->getTokenName());
-        }
+        parent::__construct('EANA10000', array());
     }
 }
 

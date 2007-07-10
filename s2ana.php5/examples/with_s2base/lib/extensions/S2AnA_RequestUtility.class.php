@@ -24,23 +24,29 @@
 /**
  * @author yonekawa
  */
-class S2AnA_CsrfInterceptor extends S2Container_AbstractInterceptor
+class S2AnA_RequestUtility
 {
-    private $securityToken;
+    const GET =  'GET';
+    const POST = 'POST';
 
-    public function setSecurityToken(S2AnA_SecurityToken $securityToken)
+    public static function isPost()
     {
-        $this->securityToken = $securityToken;
+        if (array_key_exists( 'REQUEST_METHOD', $_SERVER ) 
+            || $_SERVER['REQUEST_METHOD'] !== self::POST )
+        {
+            return FALSE;
+        }
+        return TRUE;
     }
 
-    public function invoke(S2Container_MethodInvocation $invocation)
+    public static function isGet()
     {
-        if (S2AnA_RequestUtility::isPost() && $this->securityToken->validateSecurityToken()) {
-            return $invocation->proceed();
-        } else {
-            throw new S2AnA_CsrfAttackException($invocation->getThis(),
-                                                $this->securityToken->getTokenName());
+        if (array_key_exists( 'REQUEST_METHOD', $_SERVER )
+            || $_SERVER['REQUEST_METHOD'] !== self::GET )
+        {
+            return FALSE;
         }
+        return TRUE;
     }
 }
 
