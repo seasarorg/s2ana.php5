@@ -28,9 +28,12 @@ class S2AnA_DenyInterceptor extends S2AnA_AbstractAuthorizationInterceptor
 {
     public function __construct($roleName)
     {
-        $this->addRoleName($roleName);
+        $argc = func_num_args();
+        for ($i = 0; $i < $argc; $i++) {
+            $this->addRoleName(func_get_arg($i));
+        }
     }
-    
+
     protected function ifInRole(S2Container_MethodInvocation $invocation,
                                 S2AnA_AuthenticationContext $context,
                                 $roleName) 
