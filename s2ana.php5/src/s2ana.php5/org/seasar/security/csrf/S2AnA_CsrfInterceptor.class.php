@@ -21,33 +21,35 @@
 // +----------------------------------------------------------------------+
 // $Id$
 //
-
 /**
- * ユーザーが認証されていない時の例外クラス
+ * CSRFによるリクエストをを拒否する承認Interceptor
  * @author yonekawa
  */
-class S2AnA_NotAuthenticatedException extends S2Container_S2RuntimeException
+class S2AnA_CsrfInterceptor extends S2Container_AbstractInterceptor
 {
-    private $targetComponent;
-    private $authContext;
+    private $securityToken;
 
-    public function __construct($targetComponent, $authContext)
+    public function setSecurityToken(S2AnA_SecurityToken $securityToken)
     {
-        parent::__construct('EANA0003', array(get_class($targetComponent)));
-        $this->targetComponent = $targetComponent;
-        $this->authContext = $authContext;
+        $this->securityToken = $securityToken;
     }
-    
-    public function getTargetComponent()
+
+    /**
+     * 正しいセキュリティトークンを受け取った時だけメソッドを実行する
+     */
+    public function invoke(S2Container_MethodInvocation $invocation)
     {
-        return $this->targetComponent;
+        $tokenName = $this->securityToken->getTokenName();
+        if ( ! array_key_exists($tokenName, $_POST)) {
+            throw new S2AnA_CsrfAttackException($invocation->getThis());
+        }
+        $token = $_POST[$tokenName];
+        if ( ! $this->securityToken->validate($token)) {
+            throw new S2AnA_CsrfAttackException($invocation->getThis());
+        }
+
+        return $invocation->proceed();
     }
-    
-    public function getDeniedAuthenticationContext()
-    {
-        return $this->authContext;
-    }
-    
 }
 
 ?>

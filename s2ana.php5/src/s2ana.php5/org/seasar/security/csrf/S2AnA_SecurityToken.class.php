@@ -21,33 +21,14 @@
 // +----------------------------------------------------------------------+
 // $Id$
 //
-
 /**
- * ユーザーが認証されていない時の例外クラス
+ * CSRF対策用セキュリティトークンインタフェース
  * @author yonekawa
  */
-class S2AnA_NotAuthenticatedException extends S2Container_S2RuntimeException
+interface S2AnA_SecurityToken
 {
-    private $targetComponent;
-    private $authContext;
-
-    public function __construct($targetComponent, $authContext)
-    {
-        parent::__construct('EANA0003', array(get_class($targetComponent)));
-        $this->targetComponent = $targetComponent;
-        $this->authContext = $authContext;
-    }
-    
-    public function getTargetComponent()
-    {
-        return $this->targetComponent;
-    }
-    
-    public function getDeniedAuthenticationContext()
-    {
-        return $this->authContext;
-    }
-    
+    public function getSecuirtyToken();
+    public function valiate($token);
 }
 
 ?>

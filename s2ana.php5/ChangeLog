@@ -1,3 +1,11 @@
+2007-08-20 yonekawa(S2AnA.PHP5-0.2.0)
+
+    * add: CSRF対策用パッケージを追加しました。
+        - S2AnA_CsrfInterceptor
+        - S2AnA_SecurityToken
+        - S2AnA_HashSecurityToken
+        - S2AnA_CsrfAttackException
+
 2007-06-29 yonekawa(S2AnA.PHP5-0.2.0)
 
     * fix: コンストラクタインジェクションでの複数ロール指定に対応しました。

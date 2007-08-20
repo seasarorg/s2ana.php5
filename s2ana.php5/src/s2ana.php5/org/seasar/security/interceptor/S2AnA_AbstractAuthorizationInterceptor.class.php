@@ -17,11 +17,12 @@
 // | either express or implied. See the License for the specific language |
 // | governing permissions and limitations under the License.             |
 // +----------------------------------------------------------------------+
-// | Authors: yonekawa                                                       |
+// | Authors: yonekawa                                                    |
 // +----------------------------------------------------------------------+
 // $Id$
 //
 /**
+ * ロールに対する承認Inteceptorの抽象クラス
  * @author yonekawa
  */
 abstract class S2AnA_AbstractAuthorizationInterceptor extends S2Container_AbstractInterceptor

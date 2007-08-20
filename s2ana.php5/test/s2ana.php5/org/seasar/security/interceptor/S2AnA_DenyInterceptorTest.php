@@ -71,7 +71,7 @@ class S2AnA_DenyInterceptorTest extends PHPUnit2_Framework_TestCase
             $this->fail();
         }
     }
-    
+
     public function testAllowRoleAccess()
     {
         global $inRoles;

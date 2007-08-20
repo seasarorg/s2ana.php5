@@ -17,12 +17,12 @@
 // | either express or implied. See the License for the specific language |
 // | governing permissions and limitations under the License.             |
 // +----------------------------------------------------------------------+
-// | Authors: yonekawa                                                       |
+// | Authors: yonekawa                                                    |
 // +----------------------------------------------------------------------+
 // $Id$
 //
-
 /**
+ * 常に未認証を返す認証コンテキストのサンプルクラス
  * @author yonekawa
  */
 class S2AnA_NullAuthenticationContext implements S2AnA_AuthenticationContext

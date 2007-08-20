@@ -17,11 +17,12 @@
 // | either express or implied. See the License for the specific language |
 // | governing permissions and limitations under the License.             |
 // +----------------------------------------------------------------------+
-// | Authors: yonekawa                                                       |
+// | Authors: yonekawa                                                    |
 // +----------------------------------------------------------------------+
 // $Id$
 //
 /**
+ * 指定されたロールによるアクセスを許可するInterceptor
  * @author yonekawa
  */
 class S2AnA_AllowInterceptor extends S2AnA_AbstractAuthorizationInterceptor

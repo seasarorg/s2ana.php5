@@ -22,6 +22,7 @@
 // $Id$
 //
 /**
+ * 認証コンテキストを取得するリゾルバインタフェース
  * @author yonekawa
  */
 interface S2AnA_AuthenticationContextResolver
