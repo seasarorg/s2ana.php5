@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<project name="s2ana.php5" default="info" basedir=".">
+
+    <!-- s2php5 building -->
+    <taskdef name="copy2" classname="src.phing.task.CopyFilesToOneDirTask" />
+    <taskdef name="gcore" classname="src.phing.task.GenerateCoreFileTask" />
+    <taskdef name="pearpkg2" classname="src.phing.task.PearPkg2SupportTask" />
+    <!-- /s2php5 build -->
+    
+    <property file="build.properties" />
+    
+    <target name="info">
+        <echo message="" />
+        <echo message="S2AnA.PHP5 build script" />
+        <echo message="----------------------------" />
+        <echo message="available targets:" />
+        <echo message="" />
+        <echo message="build    ---> build all" />
+        <echo message="pear-pkg ---> create pear-package" />
+        <echo message="apidocs  ---> create project apidocs" />
+        <echo message="clean    ---> remove build directory" />
+        <echo message="----------------------------" />
+        <echo message="" />
+    </target>
+
+    <target name="clean">
+        <delete dir="${project.build.dir}/${package.name}" />
+        <delete dir="${project.build.dir}" />
+    </target>
+
+    <target name="prepare">
+        <mkdir dir="${project.build.dir}" />
+        <mkdir dir="${project.build.dir}/${project.name}/${package.name}" />
+    </target>
+
+    <target name="build" depends="clean, prepare">
+        <copy2 toDir="${project.build.dir}/${project.name}/${package.name}">
+            <fileset dir="${project.src.dir}">
+                <include name="${project.name}/**/*.php"/>
+                <include name="${project.name}/**/*.properties"/>
+                <include name="${project.name}/**/*.dicon"/>
+            </fileset>
+        </copy2>
+
+        <gcore searchDir="${project.build.dir}/${project.name}/S2AnA"
+               coreFile="${gcore.core.file}"
+               listFile="${gcore.file.list}"/>
+
+        <copy file="${package.inc.template}"
+              tofile="${package.inc.file}"
+              overwrite="true"/>
+
+        <copy file="${project.basedir}/${project.license.file}"
+              tofile="${project.build.dir}/${project.name}/${project.license.file}"
+              overwrite="true"/>
+
+    </target>
+
+    <target name="pear-pkg-xml" depends="build">
+        <pearpkg name="${package.name}" 
+                 dir="${project.build.dir}/${project.name}" 
+                 destFile="${project.build.dir}/${project.name}/package.xml">
+            <fileset dir="${project.build.dir}/${project.name}">
+                <include name="**/*"/>
+            </fileset>
+            <option name="notes" value="${project.release.notes}" />
+            <option name="description" value="${project.description}" />
+            <option name="summary" value="${project.summary}" />
+            <option name="version" value="${project.version}"/>
+            <option name="state" value="${project.state}"/>
+            <option name="baseinstalldir" value="${package.name}"/>
+            <option name="license" value="${project.license.name}"/>
+            <mapping name="deps">
+                <element>
+                    <element key="type" value="php"/>
+                    <element key="rel" value="ge"/>
+                    <element key="version" value="5.1.0"/>
+                </element>
+            </mapping>
+            <mapping name="maintainers">
+                <element>
+                    <element key="handle" value="yonekawa"/>
+                    <element key="name" value="yonekawa"/>
+                    <element key="email" value="seasar-s2dicon-php5@lists.sourceforge.jp"/>
+                    <element key="role" value="lead"/>
+                </element>
+            </mapping>
+        </pearpkg>
+        <pearpkg2 uri="${project.pear.uri}"
+                  pkgFile="${project.build.dir}/${project.name}/package.xml"/>
+    </target>
+
+    <target name="test" depends="build">
+      <php expression="require_once '${project.test.dir}/test.environment.php'" />
+      <phpunit2 haltonfailure="true" printsummary="true">
+        <batchtest>
+          <fileset dir="${project.test.dir}/s2ana.php5/org/seasar/security/authorization">
+            <include name="*Test.php"/>
+          </fileset>
+        </batchtest>
+      </phpunit2>
+    </target>
+
+    <target name="pear-pkg" depends="pear-pkg-xml">
+        <exec command="pear package " 
+              dir="${project.build.dir}/${project.name}" />
+        <move toDir="${project.build.dir}/pear" overwrite="true">
+            <fileset dir="${project.build.dir}/${project.name}">
+                <include name="*.tgz"/>
+                <include name="package*.xml"/>
+            </fileset>
+        </move>
+    </target>
+
+    <target name="apidocs" description="API docs">
+        <mkdir dir="${docs.api.outdir}" />
+        <phpdoc title="${docs.api.title}"
+            destdir="${docs.api.outdir}"
+            sourcepath="${project.src.dir}/${project.name} ${docs.api.arguments} "
+            output="HTML:Smarty:PHP"
+            parseprivate="true"
+            linksource="false" />
+    </target>
+
+</project>
