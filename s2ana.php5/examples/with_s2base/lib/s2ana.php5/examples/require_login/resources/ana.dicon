@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
-    "http://www.seasar.org/dtd/components21.dtd">
-<components namespace="s2ana">
-    <include path="%REQUIRE_LOGIN_DIR%/resources/context.dicon" />
-    
-    <component name="requireLogin" class="S2AnA_AuthenticatedAccessOnlyInterceptor" />
-    <component name="authenticationContextResolver" class="S2AnA_AuthenticationContextResolverImpl" />
-</components>
