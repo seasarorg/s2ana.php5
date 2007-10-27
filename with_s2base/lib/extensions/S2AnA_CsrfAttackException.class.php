@@ -31,5 +31,4 @@ class S2AnA_CsrfAttackException extends S2Container_S2RuntimeException
         parent::__construct('EANA10000', array());
     }
 }
-
 ?>

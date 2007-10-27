@@ -24,23 +24,24 @@
 /**
  * security_token tag
  * <input type="hidden" name=$tokenParamName value={getSecurityToken} />
- * token is MD5 hash for session_id
+ * token is hash(sha1 hmac) of session_id
  * @author yonekawa
  */
-class S2AnA_SecurityToken
+class S2AnA_OneTimeSecurityToken implements S2AnA_SecurityToken
 {
     private $tokenName = 'security_token';
 
     public function getSecurityToken()
     {
-        $session_id = S2AnA_SessionUtility::getSessionId();
+        session_start();
+        $session_id = session_id();
         if ($session_id === FALSE) {
             return FALSE;
         }
-        $token = md5($session_id);
+        $token = hash_hmac('sha1', $session_id, $salt);
         return $token;
     }
-    public function validateSecurityToken()
+    public function validate()
     {
         if (array_key_exists($this->tokenName, $_POST)
             || strlen( $_POST[$this->tokenName] ) <= 0)
@@ -54,7 +55,7 @@ class S2AnA_SecurityToken
             return FALSE;
         }
 
-        // validate
+        // validate token.
         if (strcasecmp($postToken, $security_token) !== 0) {
             return FALSE
         }
